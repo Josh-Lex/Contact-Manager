@@ -1,17 +1,14 @@
-import data.InputTCF;
-
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 public class Main {
 
   InputTCF input = new InputTCF();
 
-  public void CMMain() {
+  IOmethods io = new IOmethods();
+
+
+  public void CMMain(Path path) {
     System.out.println("Please select from the options below.");
     System.out.println("1. View contacts.");
     System.out.println("2. Add a new contact.");
@@ -21,10 +18,10 @@ public class Main {
     System.out.println("Enter an option (1, 2, 3, 4 or 5):");
     int choice = input.getInt(1,5);
     switch (choice) {
-      case 1 -> viewContacts();
-      case 2 -> addContact();
-      case 3 -> searchContact();
-      case 4 -> deleteContact();
+      case 1 -> viewContacts(Path path);
+      case 2 -> addContact(Path path);
+      case 3 -> searchContact(Path path);
+      case 4 -> deleteContact(Path path);
       case 5 -> {
         System.out.println("Exit");
         System.exit(0);
@@ -34,18 +31,26 @@ public class Main {
 
   }
 
-  public void viewContacts() {
+  public void viewContacts(Path path) {
     System.out.println("View contacts");
   }
 
-  public void addContact() {
-    System.out.println("Add contact");
+  public void addContact(Path path) {
+    System.out.println("Please enter the name of your contact");
+    String contactName = input.getString();
+    System.out.println("Please enter phone number for " + contactName);
+    String phoneNumber = String.valueOf(input.getInt());
+    try {
+            Files.writeString(path, contactName + " | " + phoneNumber + "\n", StandardOpenOption.APPEND);
+        } catch (IOException ioe){
+            ioe.printStackTrace();
+        }
   }
-  public void searchContact() {
+  public void searchContact(Path path) {
     System.out.println("search contacts");
   }
 
-  public void deleteContact() {
+  public void deleteContact(Path path) {
     System.out.println("delete contact");
   }
 
@@ -56,6 +61,7 @@ public class Main {
     Main cm = new Main();
     cm.CMMain();
 
+
     // Create a File
 
 //       try {
@@ -65,7 +71,8 @@ public class Main {
 //       } catch (IOException ioe) {
 //           ioe.printStackTrace();
 //       }
+
+
+
   }
-
-
 }
