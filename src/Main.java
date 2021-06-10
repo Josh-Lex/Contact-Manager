@@ -121,7 +121,7 @@ public class Main {
     //TODO Make it so if the contact is not found, tell the user, and ask if they want to try again or return to main menu?
     boolean found = false;
     for (int i = 0; i < currentList.size(); i++) {
-      if (currentList.get(i).startsWith(search.)) {
+      if (currentList.get(i).startsWith(search)) {
         System.out.println("Contact Removed.");
         found = true;
         //Removes the index from the search.
