@@ -18,10 +18,10 @@ public class Main {
     System.out.println("Enter an option (1, 2, 3, 4 or 5):");
     int choice = input.getInt(1,5);
     switch (choice) {
-      case 1 -> viewContacts(Path path);
-      case 2 -> addContact(Path path);
-      case 3 -> searchContact(Path path);
-      case 4 -> deleteContact(Path path);
+      case 1 -> viewContacts(path);
+      case 2 -> addContact(path);
+      case 3 -> searchContact(path);
+      case 4 -> deleteContact(path);
       case 5 -> {
         System.out.println("Exit");
         System.exit(0);
@@ -40,6 +40,7 @@ public class Main {
     String contactName = input.getString();
     System.out.println("Please enter phone number for " + contactName);
     String phoneNumber = String.valueOf(input.getInt());
+    System.out.println("Great, we have added your contact");
     try {
             Files.writeString(path, contactName + " | " + phoneNumber + "\n", StandardOpenOption.APPEND);
         } catch (IOException ioe){
@@ -59,7 +60,9 @@ public class Main {
     Path contactsDirectory = Paths.get("src/data");
     Path contactsFile = Paths.get(String.valueOf(contactsDirectory), "contacts.txt");
     Main cm = new Main();
-    cm.CMMain();
+
+    cm.CMMain(contactsFile);
+
 
 
     // Create a File
