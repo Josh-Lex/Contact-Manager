@@ -63,15 +63,28 @@ public class InputTCF {
   }
 
 // Refactored to use try and catch to find errors incase a user doesn't put an Integer in.
-  public int getInt() {
+public int getInt() {
+  try {
+    //If we don't get an exception, we return tryPut
+    int tryPut = Integer.valueOf(getString());
+    return tryPut;
+  } catch (NumberFormatException nfe) {
+    //If we get an exeception, we rerun getInt, if it throws another exception we re-run again over and over.
+    System.out.println("That was an invalid input please input an INTEGER.");
+    return getInt();
+  }
+}
+
+
+  public long getLong() {
       try {
         //If we don't get an exception, we return tryPut
-        int tryPut = Integer.valueOf(getString());
+        long tryPut = Long.valueOf(getString());
         return tryPut;
       } catch (NumberFormatException nfe) {
         //If we get an exeception, we rerun getInt, if it throws another exception we re-run again over and over.
         System.out.println("That was an invalid input please input an INTEGER.");
-        return getInt();
+        return getLong();
         }
       }
 

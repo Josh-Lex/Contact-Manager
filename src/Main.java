@@ -31,28 +31,41 @@ public class Main {
 
   }
 
+  public void takeMeToMenu(Path path){
+    Boolean userResponse = input.yesNo("Would you like to go back to menu");
+    if (userResponse){
+      CMMain(path);
+    }
+  }
+
   public void viewContacts(Path path) {
-    System.out.println("View contacts");
+    System.out.println("Name | Phone number\n" +
+            "---------------");
+    io.printToConsole(path);
+    takeMeToMenu(path);
   }
 
   public void addContact(Path path) {
     System.out.println("Please enter the name of your contact");
     String contactName = input.getString();
     System.out.println("Please enter phone number for " + contactName);
-    String phoneNumber = String.valueOf(input.getInt());
+    String phoneNumber = String.valueOf(input.getLong());
     System.out.println("Great, we have added your contact");
     try {
             Files.writeString(path, contactName + " | " + phoneNumber + "\n", StandardOpenOption.APPEND);
         } catch (IOException ioe){
             ioe.printStackTrace();
         }
+    takeMeToMenu(path);
   }
   public void searchContact(Path path) {
     System.out.println("search contacts");
+    takeMeToMenu(path);
   }
 
   public void deleteContact(Path path) {
     System.out.println("delete contact");
+    takeMeToMenu(path);
   }
 
   public static void main(String[] args) {
