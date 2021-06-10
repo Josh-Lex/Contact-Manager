@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IOmethods {
+public class IOMethods {
 
   public void printToConsole (Path pathToFile){
     List<String> currentList = new ArrayList<>();
