@@ -27,7 +27,18 @@ public class Main {
       case 2 -> addContact(path);     //Appends a contact to the end.
       case 3 -> searchContact(path);  //Allows you to show a contact.
       case 4 -> deleteContact(path);  //Allows you to delete a contact.
-      case 5 -> {                     //Ends program
+      case 5 -> { //Ends program
+        List<String> currentList = new ArrayList<>();
+        try {
+          currentList = Files.readAllLines(path);
+        } catch (IOException ioe) {
+          ioe.printStackTrace();
+        }
+        try {
+          Files.write(path, currentList);
+        } catch (IOException ioe) {
+          ioe.printStackTrace();
+        }
         System.out.println("Exit");
         System.exit(0);
       }
@@ -41,8 +52,31 @@ public class Main {
     boolean userResponse = input.yesNo("Would you like to go back to menu");
     if (userResponse) {
       CMMain(path);
+    } else {
+      List<String> currentList = new ArrayList<>();
+      try {
+        currentList = Files.readAllLines(path);
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+      }
+      try {
+        Files.write(path, currentList);
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+      }
+      System.out.println("Exit");
+      System.exit(0);
     }
   }
+
+//  public String addDashes (String [] phoneNumber) {
+//             phoneNumber = phoneNumber.join('');
+//    return '(' + phoneNumber.substring(0,3) + ') '
+//            + phoneNumber.substring(3, 6)
+//            + '-'
+//            + phoneNumber.substring(6);
+//
+//  }
 
   //This method shows the contacts, using our IOMethods class method.
   public void viewContacts(Path path) {
@@ -62,6 +96,8 @@ public class Main {
     String phoneNumber = String.valueOf(input.getLong());
     System.out.println("Great, we have added your contact");
     //Below concats the name and number, and then it appends it to the contacts file
+//  Phone with dashes change
+//    phoneNumber =
     try {
       Files.writeString(path, contactName + " | " + phoneNumber + "\n", StandardOpenOption.APPEND);
     } catch (IOException ioe) {
