@@ -106,8 +106,20 @@ public class Main {
 
   //This method shows the contacts, using our IOMethods class method.
   public void viewContacts(Path path) {
-    System.out.println("Name | Phone number\n" +
-      "---------------");
+    System.out.println("---------------------------------");
+    String lineName = "Name";
+    String lineNumber = " PhoneNumber";
+    while (lineName.length() < 15) {
+      lineName += " ";
+    }
+    while (lineNumber.length() < 15) {
+      lineNumber += " ";
+    }
+    String lineSout = String.format("%2s |%s %s|", lineName, "", lineNumber);
+//      String lineSout = String.format("%s %5s | %s", lineName, "", lineNumber);
+
+    System.out.println(lineSout);
+    System.out.println("---------------------------------|");
     //Prints everything to the console by turning it into a list, and using a for loop to print each line to the console.
     io.printToConsole(path);
     //Ask if you want to return to main menu.
@@ -195,8 +207,8 @@ public class Main {
     for (int i = 0; i < currentList.size(); i++) {
 
       if (currentList.get(i).startsWith(search)) {
-        System.out.println("Name | Phone number\n" +
-          "---------------");
+        System.out.println("Name           |    Phone number\n" +
+          "-------------------------------");
         found = true;
         System.out.println(currentList.get(i).toString());
       }
