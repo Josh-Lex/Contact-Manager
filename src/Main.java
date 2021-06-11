@@ -79,6 +79,31 @@ public class Main {
 //
 //  }
 
+  public String askNumber() {
+    String phoneNumber = input.getString();
+    if (phoneNumber.length() == 10 || phoneNumber.length() == 7) {
+      return phoneNumber;
+    } else {
+      System.out.println("Please enter a valid number with 10 or 7 digits.");
+      return askNumber();
+    }
+  }
+
+  public String addDashes(String phoneNumber) {
+    if (phoneNumber.length() == 10) {
+      String newPhoneLook = "(" + phoneNumber.substring(0, 3) + ")"
+        + phoneNumber.substring(3, 6)
+        + '-'
+        + phoneNumber.substring(6);
+      return newPhoneLook;
+    } else if (phoneNumber.length() == 7) {
+      String newPhoneLook = phoneNumber.substring(0, 3) + "-"
+        + phoneNumber.substring(3);
+      return newPhoneLook;
+    }
+    return phoneNumber;
+  }
+
   //This method shows the contacts, using our IOMethods class method.
   public void viewContacts(Path path) {
     System.out.println("Name | Phone number\n" +
@@ -91,22 +116,63 @@ public class Main {
 
   //For adding contacts or "appending"
   public void addContact(Path path) {
-    System.out.println("Please enter the name of your contact");
-    String contactName = input.getString();
-    System.out.println("Please enter phone number for " + contactName);
-    String phoneNumber = String.valueOf(input.getLong());
-    System.out.println("Great, we have added your contact");
-    //Below concats the name and number, and then it appends it to the contacts file
-//  Phone with dashes change
-//    phoneNumber =
+    //This creates a list of the current contacts from the contacts.txt file.
+    //To check the values.
+    List<String> currentList = new ArrayList<>();
     try {
-      Files.writeString(path, contactName + " | " + phoneNumber + "\n", StandardOpenOption.APPEND);
+      currentList = Files.readAllLines(path);
     } catch (IOException ioe) {
       ioe.printStackTrace();
     }
-    //ask if we want to return to main menu
-    takeMeToMenu(path);
+    System.out.println("Please enter the name of your contact");
+    String contactName = input.getString();
+    System.out.println("Please enter phone number for " + contactName);
+    String phoneNumber = askNumber();
+
+    //Below iterates to check the value.
+    boolean found = false;
+    for (int i = 0; i < currentList.size(); i++) {
+
+      if (currentList.get(i).startsWith(contactName)) {
+        System.out.println("Name | Phone number\n" +
+          "---------------");
+        found = true;
+        System.out.println(currentList.get(i).toString());
+        System.out.println("This contact already exist");
+        System.out.println("Would you like to overwrite this?");
+        boolean ask = input.yesNo();
+        if (ask) {
+          currentList.remove(i);
+          System.out.println(currentList);
+
+        } else {
+          System.out.println("Do you still want to create this contact?");
+          ask = input.yesNo();
+          if (!ask) {
+            takeMeToMenu(path);
+          }
+        }
+      }
+      try {
+        Files.write(path, currentList);
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+      }
+
+      //Below concats the name and number, and then it appends it to the contacts file
+//  Phone with dashes change
+//    phoneNumber =
+      System.out.println("Great, we have added your contact");
+      try {
+        Files.writeString(path, contactName + " | " + addDashes(phoneNumber) + "\n", StandardOpenOption.APPEND);
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+      }
+      //ask if we want to return to main menu
+      takeMeToMenu(path);
+    }
   }
+
 
   public void searchContact(Path path) {
     //This creates a list of the current contacts from the contacts.txt file.
@@ -177,29 +243,37 @@ public class Main {
     takeMeToMenu(path);
   }
 
+
   public static void main(String[] args) {
+    InputTCF inputtcf = new InputTCF();
 
     Path contactsDirectory = Paths.get("src/data");
     Path contactsFile = Paths.get(String.valueOf(contactsDirectory), "contacts.txt");
     Main cm = new Main();
-
     cm.CMMain(contactsFile);
+
 //    List<String> testList = new ArrayList<>();
 //    testList.add("Bruce Wayne | 1235559817\n");
 //    testList.add("Clark Kent | 1118883245\n");
 //    testList.add("Lamar Davis | 9997778790\n");
+//    testList.add("Lamar | 9997778790\n");
+
+
+
 //    System.out.println(testList.indexOf("Bruce Wayne | 1235559817\n"));
 //    testList.contains('Bruce');
 //    boolean found;
-//    for (int i = 0; i < testList.size(); i++ ) {
-//
-//      if (testList.get(i).startsWith("Bruce")) {
+//    for (int i = 0; i < testList.size(); i++) {
+////
+//      if (testList.get(i).startsWith("Lamar")) {
 //        found = true;
-//        System.out.println(testList.get(i).toString());
+//        System.out.println(found);
 //      }
 //    }
 
-    // Create a File
+
+
+      // Create a File
 
 //       try {
 //           if (Files.notExists(contactsFile)){
@@ -208,6 +282,7 @@ public class Main {
 //       } catch (IOException ioe) {
 //           ioe.printStackTrace();
 //       }
+
 
 
   }
