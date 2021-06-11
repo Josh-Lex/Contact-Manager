@@ -204,7 +204,7 @@ public class Main {
         System.out.println(templateSout);
         System.out.println("---------------------------------");
         found = true;
-        String [] lineContact = currentList.get(i).split("\\.");
+        String[] lineContact = currentList.get(i).split("\\.");
         String lineName = lineContact[0];
         String lineNumber = lineContact[1];
         while (lineName.length() < 15) {
