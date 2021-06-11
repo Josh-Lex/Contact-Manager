@@ -121,6 +121,7 @@ public class Main {
     List<String> currentList = new ArrayList<>();
     try {
       currentList = Files.readAllLines(path);
+      System.out.println(currentList);
     } catch (IOException ioe) {
       ioe.printStackTrace();
     }
@@ -132,7 +133,6 @@ public class Main {
     //Below iterates to check the value.
     boolean found = false;
     for (int i = 0; i < currentList.size(); i++) {
-
       if (currentList.get(i).startsWith(contactName)) {
         System.out.println("Name | Phone number\n" +
           "---------------");
@@ -153,24 +153,24 @@ public class Main {
           }
         }
       }
-      try {
-        Files.write(path, currentList);
-      } catch (IOException ioe) {
-        ioe.printStackTrace();
-      }
+    }
+    try {
+      Files.write(path, currentList);
+    } catch (IOException ioe) {
+      ioe.printStackTrace();
+    }
 
-      //Below concats the name and number, and then it appends it to the contacts file
+    //Below concats the name and number, and then it appends it to the contacts file
 //  Phone with dashes change
 //    phoneNumber =
-      System.out.println("Great, we have added your contact");
-      try {
-        Files.writeString(path, contactName + " | " + addDashes(phoneNumber) + "\n", StandardOpenOption.APPEND);
-      } catch (IOException ioe) {
-        ioe.printStackTrace();
-      }
-      //ask if we want to return to main menu
-      takeMeToMenu(path);
+    System.out.println("Great, we have added your contact");
+    try {
+      Files.writeString(path, contactName + " | " + addDashes(phoneNumber) + "\n", StandardOpenOption.APPEND);
+    } catch (IOException ioe) {
+      ioe.printStackTrace();
     }
+    //ask if we want to return to main menu
+    takeMeToMenu(path);
   }
 
 
@@ -259,7 +259,6 @@ public class Main {
 //    testList.add("Lamar | 9997778790\n");
 
 
-
 //    System.out.println(testList.indexOf("Bruce Wayne | 1235559817\n"));
 //    testList.contains('Bruce');
 //    boolean found;
@@ -272,8 +271,7 @@ public class Main {
 //    }
 
 
-
-      // Create a File
+    // Create a File
 
 //       try {
 //           if (Files.notExists(contactsFile)){
@@ -282,7 +280,6 @@ public class Main {
 //       } catch (IOException ioe) {
 //           ioe.printStackTrace();
 //       }
-
 
 
   }
