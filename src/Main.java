@@ -184,12 +184,10 @@ public class Main {
     }
     //This below searches the currentList for the index of the search
     //Currently is case sensitive and have to be at the beginning.
-    //TODO Make it search regardless of case.
     System.out.println("Please enter the contact's name.");
     System.out.println("THIS IS CASE SENSITIVE");
     String search = input.getString();
     //If the boolean is found we display that contact.
-    //TODO Make it so if the contact is not found, tell the user, and ask if they want to try again or return to main menu?
     boolean found = false;
     for (int i = 0; i < currentList.size(); i++) {
       if (currentList.get(i).startsWith(search)) {
@@ -241,7 +239,6 @@ public class Main {
     System.out.println("THIS IS CASE SENSITIVE");
     String search = input.getString();
     //If the boolean is found we display that contact.
-    //TODO Make it so if the contact is not found, tell the user, and ask if they want to try again or return to main menu?
     boolean found = false;
     for (int i = 0; i < currentList.size(); i++) {
       if (currentList.get(i).startsWith(search)) {
