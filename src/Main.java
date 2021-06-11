@@ -165,7 +165,8 @@ public class Main {
 //    phoneNumber =
     System.out.println("Great, we have added your contact");
     try {
-      Files.writeString(path, contactName + "\t | " + addDashes(phoneNumber) + "\t\n", StandardOpenOption.APPEND);
+
+      Files.writeString(path, contactName + " . " + addDashes(phoneNumber) + "\n", StandardOpenOption.APPEND);
     } catch (IOException ioe) {
       ioe.printStackTrace();
     }

@@ -14,8 +14,23 @@ public class IOMethods {
       ioe.printStackTrace();
     }
     for (String line: currentList) {
-      System.out.println(line);
+      String [] lineContact = line.split("\\.");
+      String lineName = lineContact[0];
+      String lineNumber = lineContact[1];
+      String lineSout = String.format("%10s | %s", lineName, lineNumber);
+
+      System.out.println(lineSout);
     }
+//    for (String line: currentList) {
+//      String [] lineContact = line.split(" | ");
+//      String firstName = lineContact[0];
+//      String lastName = lineContact[1];
+//      String phoneNum = lineContact[2];
+
+//
+////      System.out.println("this is line number" + lineNumber);
+//      System.out.println(lineSout);
+//    }
   }
 
 
