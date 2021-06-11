@@ -190,7 +190,7 @@ public class Main {
     //If the boolean is found we display that contact.
     boolean found = false;
     for (int i = 0; i < currentList.size(); i++) {
-      if (currentList.get(i).startsWith(search)) {
+      if (currentList.get(i).toLowerCase().startsWith(search.toLowerCase())) {
         String templateName = "Name";
         String templateNumber = " PhoneNumber";
         while (templateName.length() < 15) {
@@ -241,7 +241,7 @@ public class Main {
     //If the boolean is found we display that contact.
     boolean found = false;
     for (int i = 0; i < currentList.size(); i++) {
-      if (currentList.get(i).startsWith(search)) {
+      if (currentList.get(i).toLowerCase().startsWith(search.toLowerCase())) {
         System.out.println("Contact Removed.");
         found = true;
         //Removes the index from the search.
