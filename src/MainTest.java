@@ -4,7 +4,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class MainTest {
   //This is so we can use the Input class
@@ -234,9 +236,26 @@ public class MainTest {
     } catch (IOException ioe) {
       ioe.printStackTrace();
     }
-    //For searching exactly what you want
-//    HashMap<String, String> currentHash = new HashMap<>();
 
+    //For searching exactly what you want
+    HashMap<String, String> currentHash = new HashMap<>();
+
+    for (int i = 0; i < currentList.size(); i++) {
+
+      String[] lineContact = currentList.get(i).split("\\.");
+      String lineName = lineContact[0];
+      String lineNumber = lineContact[1];
+      currentHash.put(lineName, lineNumber);
+    }
+    Set<String> keySet = currentHash.keySet();
+
+    ArrayList<String> namesOnlyList = new ArrayList<>(keySet);
+
+
+
+    /// JOSH
+//    HashMap<String, String> currentHash = new HashMap<>();
+//
 //    for (int i = 0; i < currentList.size(); i++) {
 //
 //      String[] lineContact = currentList.get(i).split("\\.");
@@ -245,7 +264,7 @@ public class MainTest {
 //      currentHash.put(lineName, lineNumber);
 //
 //    }
-
+//
 //    String[] keyArray = currentHash.keySet().toArray(new String[0]);
 //    //Checking the user's input.
 //    for (String key : keyArray) {
@@ -255,12 +274,22 @@ public class MainTest {
 //    }
     //This below searches the currentList for the index of the search
     //Currently is case sensitive and have to be at the beginning.
-    //TODO Make it search regardless of case.
     System.out.println("Please enter the contact's name.");
     String search = input.getString();
     //If the boolean is found we display that contact.
     boolean found = false;
+
+
+    /////////////////////
     for (int i = 0; i < currentList.size(); i++) {
+      for (int x = 0; x < namesOnlyList.size(); x++) {
+        if (x == i) {
+          if (currentList.get(i).toLowerCase().startsWith(search.toLowerCase())) {
+
+          }
+        }
+      }
+
       if (currentList.get(i).toLowerCase().startsWith(search.toLowerCase())) {
         System.out.println("Contact Removed.");
         found = true;

@@ -232,7 +232,6 @@ public class Main {
     }
     //This below searches the currentList for the index of the search
     //Currently is case sensitive and have to be at the beginning.
-    //TODO Make it search regardless of case.
     System.out.println("Please enter the contact's name.");
     String search = input.getString();
     //If the boolean is found we display that contact.
