@@ -121,7 +121,7 @@ public class Main {
     List<String> currentList = new ArrayList<>();
     try {
       currentList = Files.readAllLines(path);
-      System.out.println(currentList);
+//      System.out.println(currentList);
     } catch (IOException ioe) {
       ioe.printStackTrace();
     }
@@ -165,7 +165,7 @@ public class Main {
 //    phoneNumber =
     System.out.println("Great, we have added your contact");
     try {
-      Files.writeString(path, contactName + " | " + addDashes(phoneNumber) + "\n", StandardOpenOption.APPEND);
+      Files.writeString(path, contactName + "\t | " + addDashes(phoneNumber) + "\t\n", StandardOpenOption.APPEND);
     } catch (IOException ioe) {
       ioe.printStackTrace();
     }
