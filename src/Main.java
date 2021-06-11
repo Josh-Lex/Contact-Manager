@@ -44,8 +44,6 @@ public class Main {
         System.exit(0);
       }
     }
-
-
   }
 
   //This method ask the user if they want to return to the main menu.
@@ -69,15 +67,6 @@ public class Main {
       System.exit(0);
     }
   }
-
-//  public String addDashes (String [] phoneNumber) {
-//             phoneNumber = phoneNumber.join('');
-//    return '(' + phoneNumber.substring(0,3) + ') '
-//            + phoneNumber.substring(3, 6)
-//            + '-'
-//            + phoneNumber.substring(6);
-//
-//  }
 
   public String askNumber() {
     String phoneNumber = input.getString();
@@ -116,7 +105,6 @@ public class Main {
       lineNumber += " ";
     }
     String lineSout = String.format("%2s |%s %s|", lineName, "", lineNumber);
-//      String lineSout = String.format("%s %5s | %s", lineName, "", lineNumber);
 
     System.out.println(lineSout);
     System.out.println("---------------------------------|");
@@ -174,7 +162,6 @@ public class Main {
 
     //Below concats the name and number, and then it appends it to the contacts file
 //  Phone with dashes change
-//    phoneNumber =
     System.out.println("Great, we have added your contact");
     try {
 
@@ -205,12 +192,32 @@ public class Main {
     //TODO Make it so if the contact is not found, tell the user, and ask if they want to try again or return to main menu?
     boolean found = false;
     for (int i = 0; i < currentList.size(); i++) {
-
       if (currentList.get(i).startsWith(search)) {
-        System.out.println("Name           |    Phone number\n" +
-          "-------------------------------");
+        String templateName = "Name";
+        String templateNumber = " PhoneNumber";
+        while (templateName.length() < 15) {
+          templateName += " ";
+        }
+        while (templateNumber.length() < 15) {
+          templateNumber += " ";
+        }
+        String templateSout = String.format("%2s |%s %s|", templateName, "", templateNumber);
+
+        System.out.println(templateSout);
+        System.out.println("---------------------------------");
         found = true;
-        System.out.println(currentList.get(i).toString());
+        String [] lineContact = currentList.get(i).split("\\.");
+        String lineName = lineContact[0];
+        String lineNumber = lineContact[1];
+        while (lineName.length() < 15) {
+          lineName += " ";
+        }
+        while (lineNumber.length() < 15) {
+          lineNumber += " ";
+        }
+        String lineSout = String.format("%2s |%s %s|", lineName, "", lineNumber);
+
+        System.out.println(lineSout);
       }
     }
     if (!found) {
@@ -270,30 +277,5 @@ public class Main {
 //    testList.add("Clark Kent | 1118883245\n");
 //    testList.add("Lamar Davis | 9997778790\n");
 //    testList.add("Lamar | 9997778790\n");
-
-
-//    System.out.println(testList.indexOf("Bruce Wayne | 1235559817\n"));
-//    testList.contains('Bruce');
-//    boolean found;
-//    for (int i = 0; i < testList.size(); i++) {
-////
-//      if (testList.get(i).startsWith("Lamar")) {
-//        found = true;
-//        System.out.println(found);
-//      }
-//    }
-
-
-    // Create a File
-
-//       try {
-//           if (Files.notExists(contactsFile)){
-//               Files.createFile(contactsFile);
-//           }
-//       } catch (IOException ioe) {
-//           ioe.printStackTrace();
-//       }
-
-
   }
 }
