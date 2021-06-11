@@ -1,8 +1,12 @@
 import java.io.IOException;
-import java.nio.file.*;
-import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Main {
+public class MainTest {
   //This is so we can use the Input class
   InputTCF input = new InputTCF();
   //This is so we can use the IOmethods Class
@@ -230,6 +234,25 @@ public class Main {
     } catch (IOException ioe) {
       ioe.printStackTrace();
     }
+    //For searching exactly what you want
+//    HashMap<String, String> currentHash = new HashMap<>();
+
+//    for (int i = 0; i < currentList.size(); i++) {
+//
+//      String[] lineContact = currentList.get(i).split("\\.");
+//      String lineName = lineContact[0];
+//      String lineNumber = lineContact[1];
+//      currentHash.put(lineName, lineNumber);
+//
+//    }
+
+//    String[] keyArray = currentHash.keySet().toArray(new String[0]);
+//    //Checking the user's input.
+//    for (String key : keyArray) {
+//      if (currentHash.equals(key)) {
+//        currentList.get(i).toLowerCase().startsWith(key.toLowerCase());
+//      }
+//    }
     //This below searches the currentList for the index of the search
     //Currently is case sensitive and have to be at the beginning.
     //TODO Make it search regardless of case.
@@ -263,7 +286,7 @@ public class Main {
 
     Path contactsDirectory = Paths.get("src/data");
     Path contactsFile = Paths.get(String.valueOf(contactsDirectory), "contacts.txt");
-    Main cm = new Main();
+    MainTest cm = new MainTest();
     cm.CMMain(contactsFile);
 
 //    List<String> testList = new ArrayList<>();
