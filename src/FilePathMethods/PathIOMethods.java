@@ -22,7 +22,7 @@ public class PathIOMethods {
       System.out.println(line);
     }
   }
-
+//Verify
   //For adding contacts or "appending"
   //Make sure this is the path to the file you are working with
   public void addLineToFile(Path path) {
